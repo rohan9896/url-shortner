@@ -9,15 +9,17 @@ const createUrl = async (req: express.Request, res: express.Response) => {
     const urlFound = await urlModel.find({ fullUrl: fullUrl });
     if (urlFound.length > 0) {
       res.status(409);
-      res.send(urlFound);
+      res.send({
+        message: "URL already exists!",
+        success: false,
+        data: urlFound,
+      });
     } else {
       const shortUrl = await urlModel.create({ fullUrl: fullUrl });
       res.status(201).send({
-        data: {
-          message: "Short Url Created succesfully!",
-          success: true,
-          shortUrl: shortUrl,
-        },
+        message: "Short Url Created succesfully!",
+        success: true,
+        data: shortUrl,
       });
     }
   } catch (error) {
