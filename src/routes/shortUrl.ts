@@ -8,9 +8,9 @@ import {
 
 const router = express.Router();
 
-router.post("/short-urls", createUrl);
-router.get("/short-urls", getAllUrl);
-router.get("/short-urls/:id", getUrl);
-router.delete("/short-urls/:id", deleteUrl);
+router.post("/", createUrl);
+router.get("/", getAllUrl);
+router.get("/:id", getUrl);
+router.delete("/:id", deleteUrl);
 
 export default router;
